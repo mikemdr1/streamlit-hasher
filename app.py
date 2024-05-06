@@ -6,6 +6,18 @@ from datetime import datetime
 import pytz
 import json
 
+st.set_page_config(
+    page_title="bcrypt hasher",
+    page_icon="🔑",
+    layout="centered", # centered | wide
+    initial_sidebar_state="collapsed" # auto | expanded | collapsed
+)
+st.markdown("""<style>
+    #MainMenu { visibility: hidden; }
+    header { visibility: hidden; }
+    footer { visibility: hidden; }
+</style>""", unsafe_allow_html=True) 
+
 # VARIABLES LOCALES
 LOCAL_TZ = pytz.timezone("America/Mexico_City")
 
@@ -49,7 +61,7 @@ def update_hash_password():
         json_string = json.dumps(obj = json_state, indent=4)
         hasher_output.json(body = json_state, expanded = True)
         hasher_export.download_button(key="db_1", label="Descargar Contraseña en formato JSON", file_name="hashed_password.json",
-                                      mime="application/json", type="primary", data=json_string, use_container_width=True)
+                                        mime="application/json", type="primary", data=json_string, use_container_width=True)
         
         # AJUSTAMOS VARIABLES DE SESION
         st.session_state.first_execution = False
@@ -61,7 +73,7 @@ def update_details():
     json_string = json.dumps(obj = json_state, indent=4)
     hasher_output.json(body = json_state, expanded = True)
     hasher_export.download_button(key="db_2", label="Descargar Contraseña en formato JSON", file_name="hashed_password.json",
-                                  mime="application/json", type="primary", data=json_string, use_container_width=True)
+                                    mime="application/json", type="primary", data=json_string, use_container_width=True)
     
 # DISEÑO DE INTERFAZ
 st.text_input(key="plain_password", label = "Contraseña a hashear", placeholder="Pepito-9978#", type="password", on_change=update_hash_password)
@@ -76,7 +88,7 @@ if not st.session_state.first_execution:
     json_string = json.dumps(obj = json_state, indent=4)
     hasher_output.json(body = json_state, expanded = True)
     hasher_export.download_button(key="db_3", label="Descargar Contraseña en formato JSON", file_name="hashed_password.json",
-                                  mime="application/json", type="primary", data=json_string, use_container_width=True)
+                                    mime="application/json", type="primary", data=json_string, use_container_width=True)
 
 # EXPANSOR PARA DARLE MÁS DETALLES AL USUARIO
 with st.expander(label="Saber más"):
@@ -95,5 +107,3 @@ with st.expander(label="Saber más"):
 
     Es un algoritmo enfocado para hashear contraseñas, siendo de los mejores algoritmos que existen.
     """)
-
-
