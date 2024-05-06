@@ -30,7 +30,9 @@ if 'plain_password' not in st.session_state:
     st.session_state.plain_password = ""
 if 'hashed_password' not in st.session_state:
     st.session_state.hashed_password = ""
-
+if 'created_at' not in st.session_state:
+    st.session_state.created_at = None
+    
 # FUNCIONES AUXILIARES
 def create_json_state():
     json_state = {
